@@ -1,0 +1,29 @@
+State Visits Penalty:
+
+Each time the agent visits a state, a count of visits to that state is incremented.
+A penalty is calculated based on the number of times the agent has visited the current state (new_state).
+The penalty is an exponential function of the visit count, specifically -0.01 * (2 ** state_visits[new_state]).
+This encourages the agent to explore new states rather than repeatedly visiting the same ones.
+Staying in the Same State:
+
+If the agent chooses an action that results in it staying in the same state (new_state == state), it receives the visit penalty calculated above.
+This discourages the agent from choosing actions that do not lead to progress.
+Falling into the Ice (Game Termination):
+
+If the agent falls into the ice, indicated by terminated being True and reward being 0, the agent receives a penalty of -0.5.
+This severe penalty discourages the agent from taking actions that lead to falling into the ice.
+Safe Move Reward:
+
+If the agent makes a move that does not result in falling into the ice (terminated is False), it receives a reward of 0.1.
+This reward incentivizes the agent to take actions that safely advance it towards the goal.
+Combined Penalty for Repeated Visits:
+
+Regardless of the type of action, the visit penalty is added to the reward.
+This means even a safe move can receive a reduced net reward if it's to a frequently visited state, balancing safety with the need to explore less visited areas.
+Q-Table Update:
+
+The reward, after considering all the factors above, is used to update the Q-table, influencing the agent's future decisions.
+Exploration Rate Decay:
+
+The exploration rate gradually decays over time, allowing the agent to transition from exploration to exploitation.
+Initially, the agent is more likely to explore random actions, but over time it increasingly relies on the learned Q-values to make decisions.
