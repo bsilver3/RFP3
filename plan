@@ -1,0 +1,19 @@
+Training Plan:
+
+  Repeat for 1000 different Q-Tables:
+    1) Train new Q-Table:
+      For a maximum of 100 episodes:
+        1) Train until convergence, stop running at convergence
+          
+        2) Add to [nameofmodel]-train.csv:
+            - Number of episodes taken to reach convergence
+            - Seconds taken to reach convergence
+            - Success rate during training
+
+    2) Test converged Q-Table:
+      For 10000 episodes:
+        1) Test on same map, dont update values
+
+        2) Add to [nameofmodel]-test.csv:
+            - Success rate during testing
+            - Average steps per episode
